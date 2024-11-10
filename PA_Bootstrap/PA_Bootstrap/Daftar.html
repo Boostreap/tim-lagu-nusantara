@@ -1,0 +1,134 @@
+<?php
+session_start();
+require "koneksi.php";
+if (isset($_SESSION["user"])) {
+    header("Location: index.php");
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <div class="daftar-container">
+
+        <div class="login-box">
+            <div class="login-logo">
+                <h2 id="formTitle">Daftar Akun ke SuaraKita</h2>
+            </div>
+            <div class="have-acc">
+                <p>Sudah punya akun? <a href="Masuk.php">Masuk</a></p>
+            </div>
+
+            <?php
+            if (isset($_POST["Daftar"])) {
+                $Nama_pengguna = $_POST["Nama_Pengguna"];
+                $Nama = $_POST["Nama"];
+                $Email = $_POST["email"];
+                $Kata_sandi = $_POST["Kata_Sandi"];
+                $passwordHash = password_hash($Kata_sandi, PASSWORD_DEFAULT);
+                $errors = array();
+
+                // Validasi form
+                if (empty($Nama_pengguna) || empty($Nama) || empty($Email) || empty($Kata_sandi) || empty($_FILES['foto']['name'])) {
+                    array_push($errors, "Semua kolom wajib diisi");
+                }
+                if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
+                    array_push($errors, "Email tidak valid");
+                }
+                if (strlen($Kata_sandi) < 8) {
+                    array_push($errors, "Password harus terdiri dari 8 karakter");
+                }
+
+                // Cek jika file foto ada dan tidak ada error
+                if ($_FILES['foto']['error'] !== UPLOAD_ERR_OK) {
+                    array_push($errors, "Terjadi masalah saat mengunggah foto.");
+                } else {
+                    // Validasi ukuran dan tipe file foto
+                    if ($_FILES['foto']['size'] > 2000000) {
+                        array_push($errors, "Ukuran file tidak boleh lebih dari 2MB");
+                    }
+                    $allowedTypes = array(IMAGETYPE_JPEG, IMAGETYPE_PNG);
+                    $detectedType = exif_imagetype($_FILES['foto']['tmp_name']);
+                    if (!in_array($detectedType, $allowedTypes)) {
+                        array_push($errors, "Hanya file JPEG atau PNG yang diperbolehkan");
+                    }
+                }
+
+                // Menampilkan pesan error jika ada
+                if (count($errors) > 0) {
+                    foreach ($errors as $error) {
+                        echo "<div class='alert alert-danger'>$error</div>";
+                    }
+                } else {
+                    // Proses unggah foto
+                    $fotoPath = 'foto_profile/' . basename($_FILES["foto"]["name"]);
+                    if (move_uploaded_file($_FILES["foto"]["tmp_name"], $fotoPath)) {
+                        require_once "Koneksi.php";
+                        $sql = "INSERT INTO bootstrap_tb (nama_pengguna, nama, email, kata_sandi, foto) VALUES (?, ?, ?, ?, ?)";
+                        $stmt = mysqli_stmt_init($conn);
+                        
+                        // Periksa apakah query berhasil disiapkan
+                        if (mysqli_stmt_prepare($stmt, $sql)) {
+                            // Bind parameter
+                            mysqli_stmt_bind_param($stmt, "sssss", $Nama_pengguna, $Nama, $Email, $passwordHash, $fotoPath);
+                            
+                            // Eksekusi statement
+                            if (mysqli_stmt_execute($stmt)) {
+                                echo "<div class='alert alert-success'>Akun berhasil dibuat!</div>";
+                            } else {
+                                echo "<div class='alert alert-danger'>Gagal mengeksekusi query.</div>";
+                            }
+                        } else {
+                            echo "<div class='alert alert-danger'>Gagal menyiapkan statement database.</div>";
+                        }
+                    } else {
+                        echo "<div class='alert alert-danger'>Gagal mengunggah foto.</div>";
+                    }
+                }
+            }
+            ?>
+
+            <form id="dataForm" class="login-form" action="Daftar.php" method="POST" enctype="multipart/form-data"
+                onsubmit="return validasiForm()">
+                <label for="Nama_Pengguna">Nama Pengguna</label>
+                <input type="text" id="Nama_Pengguna" name="Nama_Pengguna" placeholder="Nama Pengguna">
+                <p class="error-message">Nama Pengguna tidak boleh kosong.</p>
+
+                <label for="Nama">Nama</label>
+                <input type="text" id="Nama" name="Nama" placeholder="Nama">
+                <p class="error-message">Nama tidak boleh kosong.</p>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email">
+                <p class="error-message">Email tidak boleh kosong.</p>
+
+                <label for="Kata_Sandi">Kata Sandi</label>
+                <input type="password" id="Kata_Sandi" name="Kata_Sandi" placeholder="Kata Sandi">
+                <p class="error-message">Kata Sandi tidak boleh kosong.</p>
+
+                <label for="Profile">Foto Profil</label>
+                <label for="file" class="custom-file-label">Unggah Foto</label>
+                <input type="file" id="file" name="foto">
+                <p class="file-name" id="fileName"></p>
+                <p class="error-message" id="fileError">Ukuran file tidak boleh lebih dari 2MB</p>
+
+                <div class="submit-container">
+                    <button type="submit" name="Daftar" class="submit-btn">Daftar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
