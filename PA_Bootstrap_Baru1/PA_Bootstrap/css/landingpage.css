@@ -1,0 +1,433 @@
+.container {
+  position: relative;
+  margin: auto;
+  height: 600px;
+  width: auto;
+  justify-content: center;
+}
+nav ul {
+  background-color: #110905;
+}
+nav div {
+  background-color: #110905;
+}
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #110905;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a88f6b;
+  border-radius: 10px;
+  border: 3px solid #110905;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #1f1c1c;
+}
+.navbar-section {
+  margin-top: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background-color: #110905;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: box-shadow 0.3s ease;
+}
+
+
+
+.navbar-shadow {
+  box-shadow: 0 4px 7px rgb(57, 60, 58);
+}
+
+.logo-spotify {
+  margin-left: 60px;
+  display: flex;
+  align-items: center;
+}
+
+
+
+.logo-spotify img {
+  margin-right: 5px;
+  background-color: #110905;
+}
+
+
+.logo-text {
+  font-size: 24px;
+  color: white;
+  background-color: #110905;
+  color: #a88f6b;
+}
+
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  list-style: none;
+  margin-right: 0px;
+  font-size: 14px;
+}
+.nav-bg {
+  background-color: #110905;
+}
+
+
+.nav-links li {
+  margin-left: 0px;
+  background-color: #110905;
+}
+
+.nav-links a {
+  margin-left: 50px;
+  text-decoration: none;
+  color: #a88f6b;
+  background-color: #110905;
+}
+
+.nav-links a:hover {
+  color: #1f1c1c;
+}
+
+
+.login-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+
+.login-button {
+  border: 1px solid #1f1c1c;
+  color: #110905;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+  background-color: #a88f6b;
+  text-decoration: none;
+  height: 20px;
+  width: 50px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+}
+
+
+
+
+.login-button:hover {
+  background-color: #141414;
+  color: #a88f6b;
+  border: 2px solid #a88f6b;
+}
+
+
+.login-button:focus {
+  outline: none;
+  border: #fe32b0;
+  box-shadow: 0 0 0 1px #a88f6b;
+}
+
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  color: white;
+  width: 100%;
+  height: 90vh; /* This will make the hero section take up the full viewport height */
+  background-image: url('../img/bg.png'); /* Update path according to the image location */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-top: 60px; /* Adjust this value according to the height of your navbar */
+}
+
+/* Background settings for hero section */
+/* Overlay styling to add a dark layer over the background */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(2, 2, 2, 0.7); /* Adjust opacity if needed */
+  height: 100;
+}
+
+/* Hero text styling */
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: left;
+  background-color: transparent;
+}
+
+/* Button styling */
+
+
+
+.hero-text h1 {
+  padding-top: 0px;
+  margin-top: -10px;
+  padding-left: 0px;
+  font-size: 4rem;
+  margin-bottom: 20px;
+  color: #a88f6b;
+  z-index: 9999999999999999999;
+  background-color: transparent;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #a88f6b;
+  z-index: 9999999999999;
+  background-color: transparent;
+}
+
+.btn-download {
+  background: linear-gradient(90deg, #a88f6b 0%, #a88f6b  100%);
+  color: #141414;
+  padding: 15px 30px;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: bolder;
+  background-color: transparent;
+}
+
+
+.btn-download:hover {
+  background-color: #a88f6b;
+  border: 2px solid #110905;
+}
+
+
+.hero-image {
+  position: absolute; 
+  right: 0; 
+  top: 60%; 
+  left: 63%;
+
+  transform: translate(-50px,-300px);
+}
+
+.hero-image img {
+  margin-top: 130px;
+  margin-right: 40px;
+  width: 660px;
+  height: 500KTpx;
+  
+}
+
+
+.team-container {
+  width: 100%;
+  padding: 50px 0;
+  background-color: #110905;
+  text-align: center;
+}
+
+.team-title {
+  font-size: 4rem;
+  color: #a88f6b;
+  margin-bottom: 30px;
+}
+
+.team-members {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.team-member {
+
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  width: 300px;
+  margin: 20px;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.team-member img {
+  width: 260px;
+  height: 190px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+
+.member-pic{
+  width: 300px;
+  height: 230px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  background-color: #a88f6b;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.member-name {
+  font-size: 1.2rem;
+  color: #110905;
+  margin-bottom: 5px;
+  background-color: #a88f6b;
+  width: 200px;
+  height: 40px;
+  border-radius: 100px;
+  align-content: center;
+  font-weight: bold;
+}
+
+.member-role {
+  font-size: 1.1rem;
+  color: #110905;
+  background-color: #a88f6b;
+  width: 130px;
+  height: 40px;
+  border-radius: 100px;
+  align-content: center;
+  font-weight: bold;
+}
+
+.team-members-up {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.team-members-down {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
+.footer {
+  background-color: #a88f6b;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-left {
+  display: flex;
+  justify-content: space-between;
+}
+.left, .right {
+  background-color: #a88f6b;
+  padding: 20px;
+}
+.left h2, .right h2 {
+  color: black;
+  margin-bottom: 20px;
+  background-color: #a88f6b;
+  margin-left: 20px;
+}
+.left a, .right a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  margin-bottom: 10px;
+  background-color: #a88f6b;
+  margin-left: 20px;
+}
+.right {
+  width: 300px;
+}
+
+.footer-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px;
+  background-color: #a88f6b;
+}
+
+.box-suarakita{
+  width: 300px;
+  height: 180px;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #110905;
+}
+
+.box-suarakita p {
+  padding: 10px;
+  color: #a88f6b;
+  margin: 0px;
+}
+
+.title-suarakita{
+  display: flex;
+
+}
+
+.title-suarakita h2 {
+  color: #a88f6b;
+  margin-top: 24px;
+}
+.title-suarakita img {
+  width: 50px;
+  height: 50px;
+  background-color: #a88f6b;
+  border-radius: 5px;
+  margin: 10px;
+  padding-left: 3px;
+}
+
+.footer-bottom {
+  background-color: #a88f6b;
+}
+
+.footer-bottom p {
+  text-align: left;
+  padding: 20px;
+  margin: 0px;
+  margin-left: 20px;
+  background-color: #a88f6b;
+  color: #110905;
+  border-top: 1px solid #110905;
+  width: 1190px;
+}
+
+.right :hover{
+  color: #492610;
+}
+
+.left :hover{
+  color: #492610;
+}
+
